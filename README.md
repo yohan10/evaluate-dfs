@@ -56,13 +56,11 @@ from evaluate_dfs.series_evaluator import SeriesEvaluator
 apple = pd.Series(['apple'], index=['fruits'], name=0)
 fruit_basket = pd.DataFrame({'fruits': ['apple', 'peach', 'orange']})
 
-def is_fruits_equal(series1: pd.Series, series2: pd.Series) -> bool:
-    if series1.fruits == series2.fruits:
-        return True
-    return False 
+def are_fruits_equal(series1: pd.Series, series2: pd.Series) -> bool:
+    return series1.fruits == series2.fruits
 
 series_evaluator = SeriesEvaluator(
-    mapping={'fruits_equal': is_fruits_equal},
+    mapping={'fruits_equal': are_fruits_equal},
 )
 
 evaluations = series_evaluator.evaluate_against_df(series=apple, df=fruit_basket)
@@ -76,11 +74,11 @@ pd.DataFrame(evaluations)
 
 With a filter function:
 ```python
-def filter_out_orange(series: pd.Series, df: pd.DataFrame):
+def filter_out_orange(series: pd.Series, df: pd.DataFrame) -> pd.DataFrame:
     return df[df['fruits'] != 'orange']
 
 series_evaluator = SeriesEvaluator(
-    mapping={'fruits_equal': is_fruits_equal},
+    mapping={'fruits_equal': are_fruits_equal},
     filter_df=filter_out_orange
 )
 evaluations = series_evaluator.evaluate_against_df(series=apple, df=fruit_basket)
@@ -108,13 +106,11 @@ from evaluate_dfs.dfs_evaluator import DataFramesEvaluator
 fruit_basket1 = pd.DataFrame({'fruits': ['apple', 'pineapple']})
 fruit_basket2 = pd.DataFrame({'fruits': ['apple', 'peach']})
 
-def is_fruits_equal(series1: pd.Series, series2: pd.Series) -> bool:
-    if series1.fruits == series2.fruits:
-        return True
-    return False 
+def are_fruits_equal(series1: pd.Series, series2: pd.Series) -> bool:
+    return series1.fruits == series2.fruits
 
 series_evaluator = SeriesEvaluator(
-    mapping={'fruits_equal': is_fruits_equal},
+    mapping={'fruits_equal': are_fruits_equal},
 )
 dfs_evaluator = DataFramesEvaluator(series_evaluator=series_evaluator)
 dfs_evaluator.evaluate(df1=fruit_basket1, df2=fruit_basket2)
