@@ -2,6 +2,11 @@
 
 **evaluate_dfs** provides features for evaluating a series or dataframe against another series or dataframe.
 
+## Installation
+
+```bash
+pip install evalaute-dfs
+```
 
 ## Overview
 

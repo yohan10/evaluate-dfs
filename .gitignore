@@ -1,5 +1,9 @@
-.ignore/
-.idea/
-venv/
-*.pyc
-*__pycache__*
+venv
+.idea
+__pycache__
+build
+.ignore
+dist
+*.egg-info
+.python-version
+site
